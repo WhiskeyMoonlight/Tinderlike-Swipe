@@ -40,4 +40,6 @@
     <string name="no_matching">Ваши пароли не совпадают</string>
     <string name="success">Вы успешно зарегестрированы в системе!</string>
     <string name="to_menu">Перейти в гланое меню</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

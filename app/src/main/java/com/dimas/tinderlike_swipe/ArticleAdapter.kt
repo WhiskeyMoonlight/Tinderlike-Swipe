@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 class ArticleAdapter(
@@ -26,7 +27,8 @@ class ArticleAdapter(
         holder.bind(articles[position], holder.context)
     }
 
-    inner class ArticleViewHolder(articleView: View, val context: Context) : RecyclerView.ViewHolder(articleView) {
+    inner class ArticleViewHolder(private val articleView: View, val context: Context) :
+        RecyclerView.ViewHolder(articleView) {
         private val title: TextView =
             articleView.findViewById(R.id.swipeable_title_tv)
         private val caption: TextView =
@@ -45,10 +47,10 @@ class ArticleAdapter(
             description.text = article.description
             image.setImageResource(article.imageId)
             moreButton.setOnClickListener {
-                Toast.makeText(
-                    context,
-                    "This is article number ${article.id}", Toast.LENGTH_SHORT
-                ).show()
+                val action = MainMenuSwipeFragmentDirections
+                    .actionMainMenuSwipeFragmentToCurrentArticleFragment(article.id)
+                articleView.findNavController()
+                    .navigate(action)
             }
         }
 
